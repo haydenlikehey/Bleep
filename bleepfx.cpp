@@ -51,7 +51,7 @@ void bleep(string censorContent, string &textToCensor) {
         //Activates only when time to rewrite array
         if (matchCount == ccLength) {
             for (int l = matchesArrStart; l < ccLength; l++) {
-                tlArr[l] = ccArr[(matchesArrStart - 1) + l];
+                tlArr[l] = '*';
             }
             k = 0;
 
