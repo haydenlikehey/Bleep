@@ -10,6 +10,8 @@ void bleep(string censorContent, string &textToCensor) {
     int ccLength = censorContent.size();
     int textLength = textToCensor.size();
 
+    //cout << ccLength;
+
     //establishing arrays for inputs to be looped through
     char ccArr[ccLength];       //censorContentArray
     char tlArr[textLength];     //text(toCensor)lengthArray
@@ -30,13 +32,16 @@ void bleep(string censorContent, string &textToCensor) {
     //int matchesArrStop; //just use ccLength
 
     int i = 0;
+
     while (i < textLength) {
         
+        cout << "i says: "<< i << endl;
        for (int k = 0; k < ccLength; k++) {
 
         if (ccArr[k] == tlArr[i]) {
             //match found? Increment matchCount!
             matchCount++;
+            //cout << matchCount << endl;
 
             //here we want to check if matchesArrStart has been initialized
             //We can do this by checking if matchCount above has been incremented!
@@ -49,11 +54,16 @@ void bleep(string censorContent, string &textToCensor) {
         }
         
         //Activates only when time to rewrite array
-        if (matchCount == ccLength) {
+        if (matchCount == ccLength - 1) {
+            cout << "Replacement loop should start here" << endl;
+            cout << matchesArrStart << endl;
             for (int l = matchesArrStart; l < ccLength; l++) {
                 tlArr[l] = '*';
+                cout << "Match found, replacing!";
             }
+            //Resetting counts and loop
             k = 0;
+            matchCount = 0;
 
         //Resets both the loop and match count
         }
@@ -72,8 +82,11 @@ void bleep(string censorContent, string &textToCensor) {
     //return array to string and write 
     string temp;
     for (int h = 0; h < textLength; h++) {
+        cout << "Rewriting character " << h << endl;
         temp.push_back(tlArr[h]);
     }
+
+    cout << "Currently, temp reads: " << temp << endl;
 
     textToCensor = temp;
 
