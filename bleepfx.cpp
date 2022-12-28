@@ -7,10 +7,11 @@ using namespace std;
 void bleep(string censorContent, string &textToCensor) {
 
     //gettings length of inputs
-    int ccLength = censorContent.size();
-    int textLength = textToCensor.size();
+    const int ccLength = censorContent.size();
+    const int textLength = textToCensor.size();
 
-    //cout << ccLength;
+    cout << ccLength << endl;
+    cout << textLength << endl;
 
     //establishing arrays for inputs to be looped through
     char ccArr[ccLength];       //censorContentArray
@@ -20,6 +21,13 @@ void bleep(string censorContent, string &textToCensor) {
     strcpy(ccArr, censorContent.c_str());
     strcpy(tlArr, textToCensor.c_str());
 
+    for (int u; u < sizeof(ccArr)/sizeof(char); u++) {
+        cout << ccArr[u];
+    } cout << "\n";
+
+    for (int q; q < sizeof(ccArr)/sizeof(char); q++) {
+        cout << tlArr[q];
+    } cout << "\n";
     //looping through
     /*My idea is to loop through both strings comparing characters.
       If a character matches, matchCount increases by 1, loop continues
@@ -35,9 +43,10 @@ void bleep(string censorContent, string &textToCensor) {
 
     while (i < textLength) {
         
-        cout << "i says: "<< i << endl;
+    
        for (int k = 0; k < ccLength; k++) {
-
+        //cout << k << endl;
+        //cout << i << endl;
         if (ccArr[k] == tlArr[i]) {
             //match found? Increment matchCount!
             matchCount++;
@@ -47,7 +56,7 @@ void bleep(string censorContent, string &textToCensor) {
             //We can do this by checking if matchCount above has been incremented!
             //Hereby, we assert that the beginning of censored text is i in string
             //tlArr
-            if (matchCount == 1) {
+            if (matchCount == 1 && matchesArrStart < i) {
                 matchesArrStart = i;
             }
 
@@ -58,10 +67,11 @@ void bleep(string censorContent, string &textToCensor) {
             cout << "Replacement loop should start here" << endl;
             cout << matchesArrStart << endl;
             for (int l = matchesArrStart; l < ccLength; l++) {
-                tlArr[l] = '*';
                 cout << "Match found, replacing!";
+                tlArr[l] = '*';
             }
             //Resetting counts and loop
+            cout << "k should be reset here" << endl;
             k = 0;
             matchCount = 0;
 
