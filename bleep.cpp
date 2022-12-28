@@ -10,6 +10,4 @@ int main(int argc, char * argv[]) {
     
     bleep(word, text);
 
-    cout << text;
-    
 }
